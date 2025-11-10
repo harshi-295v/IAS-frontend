@@ -1,4 +1,6 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+// Normalize base URL to avoid double slashes (e.g., https://api.com/ + /auth -> //auth)
+const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+const API_URL = RAW_API_URL.replace(/\/+$/, '')
 
 export function getToken() {
   return localStorage.getItem('token') || ''
